@@ -367,7 +367,18 @@ alt.Chart(data2000).mark_point(filled=True).encode(
 The plot faceted by column doesn't fit on the page. Redo it instead faceted by row.
 
 Bonus: It still looks bad. What further change is needed?
-
+```{python}
+alt.Chart(data2000).mark_point(filled=True).encode(
+    alt.X('fertility:Q'),
+    alt.Y('life_expect:Q'),
+    alt.Size('pop:Q', scale=alt.Scale(range=[0,1000]),
+             legend=alt.Legend(titleOrient='left')),
+    alt.Color('cluster:N', legend=None),
+    alt.OpacityValue(0.5),
+    alt.Tooltip('country:N'),
+    alt.Row('cluster:N')
+).properties(width=135, height=135)
+```
 
 ## Encoding channels: summary
 
